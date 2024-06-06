@@ -2,15 +2,7 @@ import React,{useState} from "react";
 import { Link,useNavigate} from "react-router-dom";
 import M from 'materialize-css'
 
-{/* <div style={{ marginBottom: "10px" }}>
-        {data.length===0? 
-        <div style={{display:'flex',flexDirection:'column', justifyContent:'center' , alignItems:'center'}}>
-        <img  src={opps} height={300} width={400} />
-          <h5 className="showing-nopost-message-followers">Looks like your followers haven't posted anything yet!</h5> 
-          
-          <p className="explore-text" onClick={()=>navigate('/')} >Explore</p>
 
-        </div> */}
 function Signup() {
   const [name, setName] = useState("");
   const [email, setEmail] = useState(""); 
@@ -19,13 +11,14 @@ function Signup() {
   const [password, setPassword] = useState("");
   const navigate = useNavigate();
   const baseurl ='https://flickseee.onrender.com'
+  const sendemail =email.toLowerCase()
   const postdata=()=>{
-    if(!email || !password || !username || !name){
+    if(!sendemail || !password || !username || !name){
       M.toast({html: "Please provide all the fields!",classes:"#c62828 red darken-3"})
       
       return
     }
-    if(!/^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/.test(email)){
+    if(!/^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/.test(sendemail)){
       M.toast({html: "invalid email",classes:"#c62828 red darken-3"})
       return
     }
@@ -37,7 +30,7 @@ function Signup() {
       },
       body:JSON.stringify({
         name,
-        email,
+        email:sendemail,
         password,
         username
       })
@@ -91,7 +84,8 @@ function Signup() {
           style={{  marginTop: "30px" ,width:"20%" }}
           className="btn waves-effect waves-light #7b1fa2 purple darken-2"
         onClick={()=>postdata()}
-        > {
+        > 
+        {
           loader ?  
           <div class="preloader-wrapper small active custom-spinner">
 
@@ -104,7 +98,7 @@ function Signup() {
               <div class="circle"></div>
             </div>
           </div>
-        </div>:"login"
+        </div>:"signup"
 
           }
         </button>

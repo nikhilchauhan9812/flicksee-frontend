@@ -8,13 +8,13 @@ function Login() {
   const [password, setPassword] = useState("");
   const {state,dispatch}=useContext(UserContext)
   const [loader,setloader] = useState(false)
-
+const sendemail = email.toLowerCase()
   const navigate = useNavigate();
  const baseurl ='https://flickseee.onrender.com'
   const postdata = () => {
 
     if (
-      !/^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/.test(email)||!password) {
+      !/^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/.test(sendemail)||!password) {
       M.toast({ html: "Please enter valid email and password", classes: "#c62828 red darken-3" });
       
       return;
@@ -26,7 +26,7 @@ function Login() {
         "Content-Type": "application/json",
       },
       body: JSON.stringify({
-        email,
+        email:sendemail,
         password,
       }),
     })
