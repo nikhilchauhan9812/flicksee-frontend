@@ -87,6 +87,9 @@ const baseurl ='https://flickseee.onrender.com'
   };
 
   const makecomment = (text, postId) => {
+    if(!text){
+      return
+    }
     fetch(`${baseurl}/comments`, {
       method: "put",
       headers: {
@@ -201,11 +204,11 @@ const baseurl ='https://flickseee.onrender.com'
                       item.comments.map((record) => {
                         return (
                           <div
-                            style={{ display: "flex", gap: "5px" }}
+                            style={{ display: "flex", gap: "5px",marginLeft:'10px' }}
                             key={record._id}
                           >
                             <p style={{ fontSize: "17px", margin: "0px 0px" }}>
-                              {record.postedby && record.postedby.name} :{" "}
+                              {record.postedby && record.postedby.name + ":"}  
                             </p>
                             <p
                               style={{

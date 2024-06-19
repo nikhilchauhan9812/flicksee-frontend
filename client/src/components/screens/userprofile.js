@@ -146,9 +146,9 @@ function UserProfile() {
                 <h4>{userProfile.user.name} </h4>
                
                  {userProfile.user.followers &&  !userProfile.user.followers.includes(state._id)?<text onClick={followUser} style={{color:'blue',padding:'3px 6px',border:'1px solid blue',fontWeight:'500',marginTop:'1px' , borderRadius:'30px',cursor:'pointer'}}>  follow</text> :
-                 <div style={{display:'flex' ,justifyContent:"flex-start",gap:'10px' , }}>
-                   <text style={{color:'green' , fontSize:'20px'}}> • following</text>
-                   <text onClick={unfollowUser} style={{color:'blue' ,padding:'2px 5px',border:'1px solid blue',fontWeight:'500',marginTop:'1px' , borderRadius:'30px' ,cursor:'pointer'}}>  unfollow</text>
+                 <div style={{display:'flex' ,justifyContent:"flex-start",gap:'10px' , alignItems:'center' ,alignContent:'center'}}>
+                   <p style={{color:'green' , fontSize:'20px'}}> • following</p>
+                   <p onClick={unfollowUser} style={{color:'blue' ,padding:'3px 6px',border:'1px solid blue',fontWeight:'500',marginTop:'17px' , borderRadius:'30px' ,cursor:'pointer'}}>  unfollow</p>
                   </div>
 }
               </div>

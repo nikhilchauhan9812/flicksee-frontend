@@ -16,20 +16,8 @@ function Navbar() {
           <Link to="/profile" >
             My Profile
           </Link>
-        </li>,
-        <li key='2'>
-          <button
-            className="btn waves-effect waves-light #7b1fa2 purple darken-2"
-            onClick={() => {
-              localStorage.clear();
-              dispatch({ type: "CLEAR" });
-              navigate("/login");
-            }}
-            style={{marginRight:'10px'}}
-          >
-            signout
-          </button>
-        </li>,
+        </li>
+        
       ];
     } else {
       return [

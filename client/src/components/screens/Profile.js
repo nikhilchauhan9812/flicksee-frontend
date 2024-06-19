@@ -108,7 +108,8 @@ const navigate = useNavigate()
             }).then(res=>res.json()).then(data=>{
            
               M.toast({ html: "Successfully deleted", classes: "#43a047 green darken-1" });
-              setPics(data.posts);
+              console.log(data);
+              setPics(data.mypost);
               // const newData = data.filter(item=>{
                   // return item._id !== result._id
               // })
@@ -177,9 +178,21 @@ const navigate = useNavigate()
           </div>
           <div >
            
-            <div style={{display:'flex',justifyContent:'flex-end',gap:'20px',marginRight:'20px',marginBottom:'10px'}}>
-              <text className="create-view-profile" onClick={()=>navigate('/createpost')}> + create post </text>
+            <div style={{display:'flex',justifyContent:'space-around',marginBottom:'20px'}}>
+
+             <div>
+             <p onClick={() => {
+              localStorage.clear();
+              dispatch({ type: "CLEAR" });
+              navigate("/login");
+            }}className="signout-btn">sign out</p>
+            </div>
+              <div style={{display:'flex',justifyItems:'center',alignItems:'center',gap:'10px'}}>
+
+               <p className="create-view-profile" onClick={()=>navigate('/createpost')}> + create post </p>
               {pics.length !== 0 ?<img src={edit} height={'20px'} onClick={()=>setEdit(true)}width={'20xp'}/> :null}
+              </div>
+
             </div>
             <div className="Gallery">
 

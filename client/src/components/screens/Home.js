@@ -23,7 +23,7 @@ function Home() {
     })
       .then((res) => res.json())
       .then((result) => {
-        console.log(result);
+        console.log("postdata",result);
         setData(result.post);
       })
       .catch((err) => console.error("Error fetching data:", err));
@@ -90,6 +90,9 @@ function Home() {
   };
 
   const makecomment = (text, postId) => {
+    if(!text){
+      return
+    }
     fetch(`${baseurl}/comments`, {
       method: "put",
       headers: {
@@ -136,18 +139,9 @@ function Home() {
         <Navlink />
       </div>
 
-      <div
-        style={{
-          marginBottom: "10px",
-          flex: "2",
-          display: "flex",
-          flexDirection: "column",
-          justifyContent: "flex-start",
-        }}
-      >
-        {isloading ? (
-        <h5>Loading...</h5>
-      ) :
+      <div style={{ marginBottom: "10px" }}>
+        {data && data.length !==0? 
+         data &&
           data.map((item) => {
             return (
               <div className="post" key={item._id}>
@@ -215,17 +209,17 @@ function Home() {
                       item.comments.map((record) => {
                         return (
                           <div
-                            style={{ display: "flex", gap: "5px" }}
+                            style={{ display: "flex", gap: "5px" ,alignItems:'center',marginLeft:'10px'}}
                             key={record._id}
                           >
-                            <p style={{ fontSize: "17px", margin: "0px 0px" }}>
-                              {record.postedby && record.postedby.name} :{" "}
+                            <p style={{ fontSize: "17px", margin: "0px 0px"  }}>
+                              {record.postedby && record.postedby.name }
                             </p>
                             <p
                               style={{
                                 fontSize: "15px",
                                 color: "grey",
-                                margin: "0px 0px",
+                                margin: "2px 0px 0px 0px",
                               }}
                             >
                               {record.text}
@@ -244,15 +238,17 @@ function Home() {
                     }}
                   >
                     <form
-                      style={{ display: "flex", alignItems: "center" }}
+                      style={{ display: "flex", alignItems: "center",marginLeft:'20px'}}
                       onSubmit={(e) => {
                         e.preventDefault();
                         const comment = e.target[0].value;
-                        makecomment(comment, item._id);
+                        if(comment){
+                          makecomment(comment, item._id);
+                        }
                         e.target[0].value = "";
                       }}
                     >
-                      <input type="text" placeholder="add a comment" />
+                      <input type="text" className="input-comment"style={{borderBottom:'1px solid white'}} placeholder="add a comment" />
                       <button type="submit">
                         <img src={send} height={20} alt="send" />
                       </button>
@@ -261,7 +257,12 @@ function Home() {
                 </div>
               </div>
             );
-          })}
+          }):
+          <div className="preloader">
+          <div className="spinner"></div>
+        </div>
+         
+          }
       </div>
     </>
   );

@@ -173,7 +173,8 @@ font-size:15px;
   display: flex;
   align-items: center;
   /* border:1px solid black; */
-
+  margin-bottom: 5px;
+gap:10px;
   margin-top: 20px;
 }
 .card-title{
@@ -189,7 +190,7 @@ font-size:15px;
   font-size: 16px;
 }
 
-.post-photo img {
+.post-photo img{
   width: 100%;
   border: 1px solid rgb(175, 173, 173);
   border-radius: 2px;
@@ -355,7 +356,14 @@ border-radius: 5px;
   padding:0px 7px;
   cursor:pointer;
 }
-
+.signout-btn{
+  border:1px solid red;
+  border-radius: 70px;
+  color:rgb(255, 25, 0);
+  padding:0px 7px;
+  font-size: 15px;
+  cursor:pointer;
+}
 .search-view-profile{
   border:1px solid rgb(111, 189, 215);
   border-radius: 70px;
@@ -409,6 +417,11 @@ margin-right: 10px;
   color: #999;
   font-style: italic;
 }
+.input-comment::placeholder{
+  color: #534f4f;
+  /* font-style: italic; */
+  /* font-weight: bold; */
+}
 .title-createpost{
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
 
@@ -439,6 +452,27 @@ margin-right: 10px;
   border:2px solid rgb(240, 230, 230);
   border-radius: 20px;
 }
+.preloader {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 83vh; 
+  background-color: #f1eeee; 
+}
+
+.spinner {
+  border: 10px solid #e1dada;
+  border-top: 10px solid #542068; 
+  border-radius: 50%;
+  width: 80px;
+  height: 80px;
+  animation: spin 1.5s linear infinite;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
 
 /* Media Query */
 
@@ -462,8 +496,7 @@ margin-right: 10px;
   }
 
   .post-photo img {
-    min-height: 250px;
-    max-height: 250px;
+    height: 250px;
   }
 
   .card-title {
@@ -471,7 +504,7 @@ margin-right: 10px;
   }
 
 }
-@media (max-width: 400px) {
+@media (max-width: 450px) {
   .profile-photo {
     height: 90px;
     margin-top: 20px;
@@ -480,6 +513,7 @@ margin-right: 10px;
   }
   .brand-logo {
     margin-left: 0px;
+    margin-right: 10px;
     font-size:60px !important;
   }
   .button{
@@ -504,6 +538,7 @@ margin-right: 10px;
   .post-header {
     /* flex-direction: column; */
     align-items: flex-start;
+    margin-bottom: 10px;
   }
 
   .post-header h3 {
@@ -512,7 +547,7 @@ margin-right: 10px;
 
   .post-photo img {
     min-height: 200px;
-    max-height: 200px;
+    max-height: 300px;
   }
 
   .card-title {
@@ -522,6 +557,7 @@ margin-right: 10px;
   .post-actions {
     /* flex-direction: column; */
     align-items: flex-start;
+    margin-left: 20px;
   }
 
   .post-actions button {
